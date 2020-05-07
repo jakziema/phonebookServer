@@ -57,8 +57,33 @@ app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     phonebook = phonebook.filter(person => person.id !== id)
     console.log(`${id} deleted sucessfully`)
-    
+
     response.status(204).end()
+})
+
+const generateID = () => {
+    return Math.floor(Math.random() * Math.floor(1000)) 
+}
+//add person to the phonebook
+app.post('/api/persons', (request, response) => {
+    const body = request.body
+    console.log(request.body)
+
+    if(!body.name) {
+        return response.status(400).json({
+            error:'content missing'
+        })
+    }
+    
+    const person = {
+        name: body.name,
+        number: body.number,
+        id: generateID()
+    }  
+    console.log(person.id)
+    phonebook = phonebook.concat(person)
+
+    response.json(person)
 })
 
 
