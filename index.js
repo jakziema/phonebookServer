@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+app.use(express.json())
+
 let phonebook = [
     {
         name: "Arto Hellas",
@@ -49,6 +51,17 @@ app.get('/info', (request, response) => {
     
     
 })
+
+//delete person with id
+app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    phonebook = phonebook.filter(person => person.id !== id)
+    console.log(`${id} deleted sucessfully`)
+    
+    response.status(204).end()
+})
+
+
 
 const PORT = 3001
 app.listen(PORT, () => {
