@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/jakziema/phonebookServer/issues"
   },
-  "homepage": "https://github.com/jakziema/phonebookServer#readme"
+  "homepage": "https://github.com/jakziema/phonebookServer#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
 }
